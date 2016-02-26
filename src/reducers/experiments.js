@@ -1,11 +1,13 @@
-import * as types from '../constants/ActionTypes';
+import { UPDATE_EXPERIMENTS } from '../constants/ActionTypes';
 
 const initialState = {
-  experiments: []
+  experimentList: []
 };
 
 export default function experiments(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_EXPERIMENTS:
+      return Object.assign({}, state, { experimentList: action.experiments });
     default:
       return state;
   }

@@ -29,8 +29,8 @@ node_modules
 #dist folder
 dist
 
-#Webstorm metadata
-.idea
+# Secrets file
+secrets.js
 
 # Mac files
 .DS_Store
