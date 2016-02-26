@@ -6,4 +6,4 @@ export const PROJECTS_URL = `${OPTIMIZELY_BASE_URL}projects/`;
 
 export const PROD_EXPERIMENTS_URL = `${PROJECTS_URL}${PROD_PROJECT_ID}/experiments/`;
 
-export const getResultsUrl = (experimentId) => `${OPTIMIZELY_BASE_URL}experiments/${experimentId}`;
+export const getResultsUrl = (experimentId) => `${OPTIMIZELY_BASE_URL}experiments/${experimentId}/results`;

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as experimentsActions from '../actions/experimentsActions';
-import Experiment from '../components/Experiment';
+import ExperimentContainer from '../containers/ExperimentContainer';
 
 class HomeContainer extends Component {
   componentWillMount() {
@@ -10,12 +10,13 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { experiments } = this.props;
+    const { experiments, actions } = this.props;
 
     return (
       <div className="home-container">
         <h1>Kapow Optimizely Dashboard</h1>
-        {experiments.experimentList.map(experiment => <Experiment experiment={experiment} />)}
+        {experiments.experimentList.map(experiment => <ExperimentContainer experiment={experiment}
+                                                                           fetchResults={actions.fetchResults} />)}
       </div>
     );
   }
