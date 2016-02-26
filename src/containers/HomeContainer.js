@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as experimentsActions from '../actions/experimentsActions';
+import Experiment from '../components/Experiment';
 
 class HomeContainer extends Component {
   componentWillMount() {
@@ -14,16 +15,7 @@ class HomeContainer extends Component {
     return (
       <div className="home-container">
         <h1>Kapow Optimizely Dashboard</h1>
-        {experiments.experimentList.map(experiment => {
-          return (
-            <div>
-              <h3>{experiment.description}</h3>
-              <ul>
-                {Object.keys(experiment).map(key => <li>{`${key} - ${experiment[key]}`}</li>)}
-              </ul>
-            </div>
-          );
-        })}
+        {experiments.experimentList.map(experiment => <Experiment experiment={experiment} />)}
       </div>
     );
   }
