@@ -1,5 +1,14 @@
 import React, { PropTypes } from 'react';
 
+const tableDataFactory = {
+  'Variation': (data) => data.variation_name,
+  'Visitors': (data) => data.visitors,
+  'Conversions': (data) => data.conversions,
+  'Conversion Rate': (data) => data.conversion_rate,
+  'Improvement': (data) => data.improvement,
+  'Statistical Significance': (data) => `${data.statistical_significance} (${data.status})`
+};
+
 const Goal = ({ name, results, id }) => {
   return (
     <div className="goal">
@@ -7,24 +16,14 @@ const Goal = ({ name, results, id }) => {
       <table>
         <thead>
           <tr>
-            <th>Variation</th>
-            <th>Visitors</th>
-            <th>Conversions</th>
-            <th>Conversion Rate</th>
-            <th>Improvement</th>
-            <th>Statistical Significance</th>
+            {Object.keys(tableDataFactory).map(key => <th>{key}</th>)}
           </tr>
         </thead>
         <tbody>
           {results.map(variation => {
             return (
               <tr>
-                <td>{variation.variation_name}</td>
-                <td>{variation.visitors}</td>
-                <td>{variation.conversions}</td>
-                <td>{variation.conversion_rate}</td>
-                <td>{variation.improvement}</td>
-                <td>{`${variation.statistical_significance} (${variation.status})`}</td>
+                {Object.keys(tableDataFactory).map(key => <td>{tableDataFactory[key](variation)}</td>)}
               </tr>
             );
           })}
