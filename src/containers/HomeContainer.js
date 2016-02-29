@@ -4,9 +4,19 @@ import { connect } from 'react-redux';
 import * as experimentsActions from '../actions/experimentsActions';
 import ExperimentContainer from '../containers/ExperimentContainer';
 
+const statusSort = ['Running', 'Paused', 'Not started', 'Archived', 'Draft'];
+
 class HomeContainer extends Component {
   componentWillMount() {
     this.props.actions.fetchExperiments();
+  }
+
+  get sortedExperiments() {
+    const { experimentData } = this.props.experiments;
+    return Object.keys(experimentData).sort((a, b) => {
+      if (statusSort.indexOf(experimentData[a].status) > statusSort.indexOf(experimentData[b].status)) { return 1; }
+      else { return -1; }
+    });
   }
 
   render() {
@@ -15,7 +25,7 @@ class HomeContainer extends Component {
     return (
       <div className="home-container">
         <h1>Kapow Optimizely Dashboard</h1>
-        {Object.keys(experiments.experimentData).map(id => {
+        {this.sortedExperiments.map(id => {
           return <ExperimentContainer experiment={experiments.experimentData[id]}
                                       isFetching={experiments.isFetching[id]}
                                       fetchResults={actions.fetchResults} />
