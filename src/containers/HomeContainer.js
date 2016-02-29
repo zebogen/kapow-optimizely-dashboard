@@ -24,7 +24,7 @@ class HomeContainer extends Component {
 
     return (
       <div className="home-container">
-        <h1>Kapow Optimizely Dashboard</h1>
+        <h3>Production Experiments:</h3>
         {this.sortedExperiments.map(id => {
           return <ExperimentContainer experiment={experiments.experimentData[id]}
                                       isFetching={experiments.isFetching[id]}

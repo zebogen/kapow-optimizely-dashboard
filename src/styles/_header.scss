@@ -1,0 +1,104 @@
+body {
+  background-color: $eggshell;
+}
+
+.navbar {
+  height: 100px;
+  border-radius: 0;
+  background: $dusk url('../assets/background_tile_blue.png') repeat bottom center;
+  border: 0;
+  margin-bottom: 0;
+  padding: 0 36px;
+  .navbar-nav {
+    li {
+      a {
+        font-weight: 300;
+        letter-spacing: 2px;
+        font-size: 16px;
+        color: $white;
+        padding: 25px;
+        text-transform: uppercase;
+        &:hover {
+          background: transparent;
+          color: $rust;
+        }
+      }
+      &.dropdown {
+        .name {
+          text-transform: capitalize;
+          letter-spacing: 0;
+          &:after {
+            font-family: "fontAwesome";
+            content: "\f078";
+            position: relative;
+            left: 5px;
+            top: 0;
+            font-size: 14px;
+          }
+        }
+        ul.dropdown-menu {
+          padding: 0;
+          width: 300px;
+          right: 250;
+          border-radius: 0;
+          li {
+            ul {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              li {
+                a {
+                  font-size: 16px;
+                  display: block;
+                  color: $dusk;
+                  padding: 10px;
+                  text-transform: uppercase;
+                  text-align: right;
+                  border-top: 1px solid $silver;
+                  &:hover {
+                    background: $eggshell;
+                    text-decoration: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.open {
+          a {
+            color: $rust;
+            background: transparent;
+          }
+        }
+      }
+    }
+    &.navbar-right {
+      > li {
+        > a {
+          padding: 25px 0;
+        }
+        &.logged-out {
+          a:last-child {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.kapow_logo {
+  padding-top: 35px;
+  width: 153px;
+  height: 28px;
+}
+
+#nav-title-container, #logo-container {
+  display: inline-block;
+}
+
+.dashboard-title {
+  margin-left: 20px;
+  color: $eggshell;
+  font-size: 28px;
+}

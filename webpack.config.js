@@ -49,7 +49,17 @@ const getEntry = function (env) {
 };
 
 const getLoaders = function (env) {
-  const loaders = [{ test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel', 'eslint'] }];
+  const loaders = [
+    {
+      test: /\.js$/,
+      include: path.join(__dirname, 'src'),
+      loaders: ['babel', 'eslint']
+    },
+    {
+      test: /\.png$/,
+      loader: 'url-loader?limit=100000'
+    }
+  ];
 
   if (env === productionEnvironment ) {
     // generate separate physical stylesheet for production build using ExtractTextPlugin. This provides separate caching and avoids a flash of unstyled content on load.
