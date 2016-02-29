@@ -1,6 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import ExperimentResults from './ExperimentResults';
 
 class Experiment extends Component {
+  hasResults() {
+    return Object.keys(this.props.experiment.results || {}).length > 0;
+  }
+
   render() {
     const {
       experiment: { results, description, details, status }
@@ -11,24 +16,7 @@ class Experiment extends Component {
         <h3>{description}</h3>
         <h5>{details}</h5>
         <h5>Status: {status}</h5>
-        <h5>Results:</h5>
-        <ul>
-          <li>
-            {Object.keys(results || {}).map(goalId => {
-              return (
-                <ul>
-                  {results[goalId].map(variation => {
-                    return (
-                      <li>
-                        <ul>{Object.keys(variation).map(key => <li>{`${key}: ${variation[key]}`}</li>)}</ul>
-                      </li>
-                    );
-                  })}
-                </ul>
-              );
-            })}
-          </li>
-        </ul>
+        {this.hasResults() ? <ExperimentResults results={results} /> : ''}
       </div>
     );
   }
