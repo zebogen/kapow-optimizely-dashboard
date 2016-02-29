@@ -1,4 +1,4 @@
-import { UPDATE_EXPERIMENTS, UPDATE_RESULTS } from '../constants/ActionTypes';
+import { UPDATE_EXPERIMENTS, UPDATE_RESULTS, BEGIN_FETCH, END_FETCH } from '../constants/ActionTypes';
 import { OPTIMIZELY_KEY, PROD_PROJECT_ID } from '../secrets';
 import { PROD_EXPERIMENTS_URL, getResultsUrl } from '../constants/Endpoints';
 
@@ -16,14 +16,28 @@ export const fetchExperiments = (url = PROD_EXPERIMENTS_URL) => {
 
 export const fetchResults = (experimentId) => {
   return (dispatch) => {
+    dispatch(beginFetch(experimentId));
     return fetch(getResultsUrl(experimentId), { headers: tokenHeader })
-            .then(response => response.json().then(json => dispatch(updateResults(json, experimentId))));
+            .then(response => response.json()
+              .then(json => {
+                dispatch(endFetch(experimentId));
+                dispatch(updateResults(json, experimentId));
+              })
+            );
   }
 };
 
 // ----------------------------
 // Synchronous action creators
 // ----------------------------
+export const beginFetch = (experimentId) => {
+  return { type: BEGIN_FETCH, experimentId };
+};
+
+export const endFetch = (experimentId) => {
+  return { type: END_FETCH, experimentId };
+};
+
 export const updateExperiments = (experiments) => {
   return { type: UPDATE_EXPERIMENTS, experiments };
 };

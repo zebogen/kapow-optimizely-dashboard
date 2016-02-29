@@ -17,6 +17,7 @@ class HomeContainer extends Component {
         <h1>Kapow Optimizely Dashboard</h1>
         {Object.keys(experiments.experimentData).map(id => {
           return <ExperimentContainer experiment={experiments.experimentData[id]}
+                                      isFetching={experiments.isFetching[id]}
                                       fetchResults={actions.fetchResults} />
         })}
       </div>
