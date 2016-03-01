@@ -36,7 +36,7 @@ class HomeContainer extends Component {
 }
 
 HomeContainer.propTypes = {
-  experiments: PropTypes.array.isRequired,
+  experiments: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 

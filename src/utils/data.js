@@ -11,11 +11,12 @@ export const normalizeExperiments = (experiments) => {
 };
 
 // Transforms an array of result objects from Optimizely into an object
-// mapping each goal ID to an array of corresponding result objects.
-export const normalizeResults = (results) => {
+// mapping each variation ID (or other ID if keyField is specified) to
+// an array of corresponding result objects.
+export const normalizeResults = (results, keyField = 'variation_id') => {
   return results.reduce((normalized, result) => {
     return Object.assign({}, normalized, {
-      [result.goal_id]: (normalized[result.goal_id] || []).concat([result])
+      [result[keyField]]: (normalized[result[keyField]] || []).concat([result])
     });
   }, {});
 };

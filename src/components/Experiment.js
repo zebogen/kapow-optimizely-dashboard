@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ExperimentResults from './ExperimentResults';
+import ResultsSummaryTable from './ResultsSummaryTable';
 
 class Experiment extends Component {
   hasResults() {
@@ -13,10 +14,8 @@ class Experiment extends Component {
 
     return (
       <div className="experiment">
-        <h3>{description}</h3>
-        <h5>{details}</h5>
-        <h5>Status: {status}</h5>
-        {this.hasResults() ? <ExperimentResults results={results} /> : ''}
+        <section>{`${description} (${status})`}</section>
+        {this.hasResults() ? <ResultsSummaryTable results={results} /> : ''}
       </div>
     );
   }

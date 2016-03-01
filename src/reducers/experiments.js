@@ -28,7 +28,7 @@ export default function experiments(state = initialState, action) {
         experimentData: { ...state.experimentData,
           [action.experimentId]: {
             ...state.experimentData[action.experimentId],
-            results: normalizeResults(action.results)
+            results: normalizeResults(action.results, 'variation_id')
           }
         }
       });
