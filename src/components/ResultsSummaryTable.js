@@ -3,21 +3,22 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const ResultsSummaryTable = ({ results }) => {
   const rows = Object.keys(results).map(variationId => {
-    let firstCell = <td>{results[variationId][0].variation_name}</td>;
-    let cells = [firstCell].concat(results[variationId].map(goal => {
+    let firstCell = <td>{results[variationId][Object.keys(results[variationId])[0]].variation_name}</td>;
+    let cells = Object.keys(results[variationId]).sort().map(goalId => {
       return (
-        <td key={`${variationId}-cell-${goal.conversions}`}>
-          {`${goal.conversions} (${goal.conversion_rate.toFixed(3)}%)`}
+        <td key={`${variationId}-cell-${results[variationId][goalId].conversions}`}
+            className={results[variationId][goalId].status}>
+          {`${results[variationId][goalId].conversions} (${(results[variationId][goalId].conversion_rate * 100).toFixed(2)}%)`}
         </td>
       );
-    }));
+    });
 
     return (
       <ReactCSSTransitionGroup component="tr"
                                transitionName="example"
                                transitionEnterTimeout={500}
                                transitionLeaveTimeout={300}>
-        {cells}
+        {[firstCell].concat(cells)}
       </ReactCSSTransitionGroup>
     );
   });
@@ -28,7 +29,7 @@ const ResultsSummaryTable = ({ results }) => {
         <thead>
           <tr>
             <th>Variation Name</th>
-            {results[Object.keys(results)[0]].map(result => <th>{result.goal_name}</th>)}
+            {Object.keys(results[Object.keys(results)[0]]).sort().map(goalId => <th>{results[Object.keys(results)[0]][goalId].goal_name}</th>)}
           </tr>
         </thead>
         <tbody>

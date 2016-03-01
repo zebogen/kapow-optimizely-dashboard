@@ -15,8 +15,12 @@ export const normalizeExperiments = (experiments) => {
 // an array of corresponding result objects.
 export const normalizeResults = (results, keyField = 'variation_id') => {
   return results.reduce((normalized, result) => {
+    // debugger;
     return Object.assign({}, normalized, {
-      [result[keyField]]: (normalized[result[keyField]] || []).concat([result])
+      [result[keyField]]: Object.assign({},
+        (normalized[result[keyField]] || {}),
+        { [result.goal_id]: result }
+      )
     });
   }, {});
 };

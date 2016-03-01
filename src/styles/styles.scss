@@ -10,19 +10,27 @@
 
 /* Styles */
 .example-enter {
-  opacity: 0.01;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+  background-color: rgba(0, 0, 0, 50);
+  transition: all 1000ms ease-in;
 }
 
-.example-leave {
-  opacity: 1;
+// .example-leave {
+//   opacity: 1;
+// }
+//
+// .example-leave.example-leave-active {
+//   opacity: 0.01;
+//   transition: opacity 300ms ease-in;
+// }
+
+.winner {
+  background-color: $brand-success;
 }
 
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.loser {
+  background-color: $brand-danger;
 }
