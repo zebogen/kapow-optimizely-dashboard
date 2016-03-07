@@ -28,9 +28,10 @@
 // }
 
 .winner {
-  background-color: $brand-success;
+  background-color: $basil;
+  // box-shadow: 2px 2px 10px $gold, -2px -2px 10px $gold;
 }
 
 .loser {
-  background-color: $brand-danger;
+  background-color: $coral;
 }

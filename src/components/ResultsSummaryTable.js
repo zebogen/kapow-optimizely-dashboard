@@ -6,7 +6,7 @@ const ResultsSummaryTable = ({ results }) => {
     let firstCell = <td>{results[variationId][Object.keys(results[variationId])[0]].variation_name}</td>;
     let cells = Object.keys(results[variationId]).sort().map(goalId => {
       return (
-        <td key={`${variationId}-cell-${results[variationId][goalId].conversions}`}
+        <td key={`v${variationId}-g${goalId}-${results[variationId][goalId].conversions}`}
             className={results[variationId][goalId].status}>
           {`${results[variationId][goalId].conversions} (${(results[variationId][goalId].conversion_rate * 100).toFixed(2)}%)`}
         </td>
